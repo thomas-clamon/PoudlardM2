@@ -2,6 +2,8 @@ package com.example.poudlarm10710.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Maisons")
 public class MaisonEntity {
@@ -16,6 +18,18 @@ public class MaisonEntity {
 
     @Column(name = "points", nullable = false)
     private Integer points;
+
+    @OneToMany(fetch =FetchType.LAZY)
+    @JoinColumn(name = "id_maison")
+    List<SorcierEntity> sorcierEntityList;
+
+    public List<SorcierEntity> getSorcierEntityList() {
+        return sorcierEntityList;
+    }
+
+    public void setSorcierEntityList(List<SorcierEntity> sorcierEntityList) {
+        this.sorcierEntityList = sorcierEntityList;
+    }
 
     public Integer getId() {
         return id;

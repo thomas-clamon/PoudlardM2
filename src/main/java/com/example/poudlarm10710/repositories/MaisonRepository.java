@@ -1,4 +1,4 @@
-package com.example.poudlarm10710;
+package com.example.poudlarm10710.repositories;
 
 import com.example.poudlarm10710.entities.MaisonEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
