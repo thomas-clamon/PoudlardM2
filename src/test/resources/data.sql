@@ -1,0 +1,1 @@
+INSERT INTO Maisons (nom, points) values ('Grynfondor', 100)
