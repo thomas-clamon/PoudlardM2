@@ -1,6 +1,7 @@
 package com.example.poudlarm10710.services;
 
 import com.example.poudlarm10710.dto.SorcierDto;
+import com.example.poudlarm10710.dto.SorcierSortilegeDto;
 import com.example.poudlarm10710.entities.SorcierEntity;
 import com.example.poudlarm10710.repositories.SorcierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,22 @@ public class SorcierServies implements ISorcierService {
     }
 
     @Override
+    public SorcierSortilegeDto toSortilegeDto(SorcierEntity entity) {
+        SorcierSortilegeDto dto = new SorcierSortilegeDto();
+        dto.setNom(entity.getNom());
+        dto.setPrenom(entity.getPrenom());
+
+        // on recupere le nom de la maison.
+        String maison = entity.getMaisonEntity().getNom();
+        dto.setMaison(maison);
+
+        // je recupere le nombre de sort
+        dto.setNbSort(entity.getList_sort().size());
+
+        return dto;
+    }
+
+    @Override
     public List<SorcierDto> getAll() {
         return repository.findAll().stream().map(sorcier -> toDto(sorcier)).collect(Collectors.toList());
     }
@@ -36,6 +53,11 @@ public class SorcierServies implements ISorcierService {
     @Override
     public SorcierDto get(Integer id) {
         return toDto(repository.findById(id).get());
+    }
+
+    @Override
+    public SorcierSortilegeDto getSorcierSortilege(Integer id) {
+        return toSortilegeDto(repository.findById(id).get());
     }
 
     @Override

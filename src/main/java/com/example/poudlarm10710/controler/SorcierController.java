@@ -31,4 +31,13 @@ public class SorcierController {
             return new ResponseEntity("Le sorcier n'existe pas", HttpStatusCode.valueOf(201));
         return new ResponseEntity(service.get(id), HttpStatusCode.valueOf(200));
     }
+
+    @GetMapping("get/sortielege/{id}")
+    ResponseEntity getSortilege (@PathVariable Integer id){
+
+        // on verifie si le sorcier existe sinon on s'arrete
+        if (!service.exist(id))
+            return new ResponseEntity("Le sorcier n'existe pas", HttpStatusCode.valueOf(201));
+        return new ResponseEntity(service.get(id), HttpStatusCode.valueOf(200));
+    }
 }
